@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+  <script src="../static/jq/jquery-2.1.0.js"></script>
+
+  <script>
+
+
+    function register_data(){
+
+        var u1 =  $("#u1").val();
+        var p1 =  $("#p1").val();
+
+        if(u1 != "" && p1 != "")
+        {
+
+                $.ajax({
+                     type: "post",
+
+                     url: "/data_register/",
+                     data: {
+                         "username":u1,
+                         'password':p1
+                     },
+                     dataType: "json",
+                     success: function(data){
+
+                         $("#show").html(u1 + data.kk);
+
+                     }
+             });
+
+        }
+        else
+        {
+            alert("不能为空");
+        }
+
+    }
+
+  </script>
+</head>
+<body>
+
+<h1 align="center">注册</h1>
+<table align="center" border="1px">
+    <tr>
+        <td>用户名：</td>
+        <td><input type="text" id = "u1"></td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td><input type="password" id='p1'></td>
+    </tr>
+    <tr>
+        <td>
+            <a href="javaScript:register_data()">注册</a>
+        </td>
+        <td><a href="{{ url_for('login') }}">登录</a></td>
+    </tr>
+</table>
+<p align="center" id = "show"></p>
+
+
+</body>
+</html>

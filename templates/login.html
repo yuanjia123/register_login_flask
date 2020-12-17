@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <script src="../static/jq/jquery-2.1.0.js"></script>
+
+  <script>
+
+
+    function send_data(){
+
+        var u1 =  $("#u1").val();
+        var p1 =  $("#p1").val();
+
+        if(u1 != "" && p1 != ""){
+
+            $.ajax({
+             type: "post",
+
+             url: "/data_login/",
+             data: {
+                 "username":u1,
+                 'password':p1
+             },
+             dataType: "json",
+             success: function(data){
+                 $("#show").html(u1 + data.wakaka);
+
+             }
+         });
+        }else{
+            alert("不能为空");
+        }
+    }
+
+  </script>
+</head>
+<body>
+
+<h1 align="center">登录</h1>
+<table align="center" border="1px">
+    <tr>
+        <td>用户名:</td>
+        <td><input id="u1" value=""></td>
+    </tr>
+
+    <tr>
+        <td>密码:</td>
+        <td><input id="p1" value=""></td>
+    </tr>
+
+    <tr>
+        <td><a href="javaScript:send_data()">密码提交</a></td>
+    </tr>
+</table>
+<p align="center" id = "show"></p>
+</body>
+</html>
